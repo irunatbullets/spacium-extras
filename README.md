@@ -1,2 +1,3 @@
 # packages
-A collection of pre-built RPM packages available through COPR.
+
+A small collection of RPM packages I build and maintain for various projects, available through COPR.
