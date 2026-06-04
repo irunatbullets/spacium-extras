@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        Xwayland integration helper for Wayland compositors
 
 License:        MPL-2.0
-Source0:        xwayland-satellite.tar.gz
+Source0:        xwayland-satellite-0.0.0.tar.gz
 
 BuildRequires:  cargo
 BuildRequires:  rust
