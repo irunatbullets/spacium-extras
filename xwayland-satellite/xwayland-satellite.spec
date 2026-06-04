@@ -5,6 +5,7 @@ Summary:        Xwayland integration helper for Wayland compositors
 
 License:        MPL-2.0
 Source0:        xwayland-satellite-0.0.0.tar.gz
+Source1:        vendor.tar.gz
 
 BuildRequires:  cargo
 BuildRequires:  rust
@@ -17,16 +18,32 @@ Xwayland integration helper for Wayland compositors.
 %prep
 %autosetup -n xwayland-satellite
 
+# Unpack vendored dependencies
+tar -xzf %{SOURCE1}
+
+# Force cargo to use vendored crates only
+mkdir -p .cargo
+cat > .cargo/config.toml << 'EOF'
+[source.crates-io]
+replace-with = "vendored-sources"
+
+[source.vendored-sources]
+directory = "vendor"
+EOF
+
 %build
+export CARGO_NET_OFFLINE=true
+export CARGO_BUILD_JOBS=%{_smp_build_ncpus}
+
 cargo build --release
 
 %install
-install -Dm755 target/release/xwayland-satellite %{buildroot}/usr/bin/xwayland-satellite
+install -Dm755 target/release/xwayland-satellite \
+    %{buildroot}%{_bindir}/xwayland-satellite
 
 %files
-/usr/bin/xwayland-satellite
+%{_bindir}/xwayland-satellite
 
 %changelog
-* Thu Jun 04 2026 irunatbullets - 0.0.0-1
-- Initial build
+%autochangelog
 
