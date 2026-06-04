@@ -46,9 +46,6 @@ install -Dm755 target/release/bluetui \
     %{buildroot}%{_bindir}/bluetui
 
 %files
-%license LICENSE
-%license LICENSE.dependencies
-%doc README.md
 %{_bindir}/bluetui
 
 %changelog
