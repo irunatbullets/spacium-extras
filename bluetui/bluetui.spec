@@ -11,6 +11,7 @@ Source1:        vendor.tar.gz
 
 BuildRequires:  cargo
 BuildRequires:  rust
+BuildRequires:  rust-packaging
 BuildRequires:  clang
 BuildRequires:  dbus-devel
 
@@ -19,11 +20,11 @@ TUI for managing Bluetooth on Linux.
 
 %prep
 %autosetup -n bluetui-%{version}
+
 tar -xf %{SOURCE1}
 
-# Point cargo to vendored dependencies
 mkdir -p .cargo
-cat > .cargo/config.toml <<EOF
+cat > .cargo/config.toml <<'EOF'
 [source.crates-io]
 replace-with = "vendored-sources"
 
@@ -31,11 +32,17 @@ replace-with = "vendored-sources"
 directory = "vendor"
 EOF
 
+# Prevent RPM debugsource generation from tripping over vendored Rust sources
+rm -rf vendor/.cargo
+
 %build
-cargo build --release --frozen
+%cargo_build --release --frozen
 
 %install
 install -Dm755 target/release/bluetui %{buildroot}%{_bindir}/bluetui
+
+# Remove vendored crates from debugsource collection
+rm -rf vendor
 
 %files
 %license LICENSE
