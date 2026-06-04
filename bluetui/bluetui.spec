@@ -1,9 +1,6 @@
-%global cargo_install_lib 0
-%global crate bluetui
-
 Name:           bluetui
 Version:        0.8.0
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        TUI for managing bluetooth on Linux
 
 License:        GPL-3.0-only
@@ -11,31 +8,28 @@ URL:            https://github.com/pythops/bluetui
 
 Source0:        bluetui-0.8.0.crate
 
-BuildRequires:  cargo-rpm-macros >= 26
+BuildRequires:  cargo
+BuildRequires:  rust
+BuildRequires:  clang
+BuildRequires:  dbus-devel
 
 %description
 TUI for managing bluetooth on Linux.
 
 %prep
-%autosetup -n %{crate}-%{version}
-%cargo_prep
+%autosetup -n bluetui-%{version}
 
 %build
-%cargo_build
+cargo build --release
 
 %install
-%cargo_install
+install -Dm755 target/release/bluetui %{buildroot}%{_bindir}/bluetui
 
 %files
 %license LICENSE
 %license LICENSE.dependencies
-%license cargo-vendor.txt
+%doc README.md
 %{_bindir}/bluetui
-
-%if %{with check}
-%check
-%cargo_test
-%endif
 
 %changelog
 %autochangelog
