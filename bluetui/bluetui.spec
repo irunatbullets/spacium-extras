@@ -13,8 +13,7 @@ Summary:        TUI for managing bluetooth on Linux
 
 License:        GPL-3.0
 URL:            https://crates.io/crates/bluetui
-Source0:         bluetui-0.8.0.crate
-Source1:         bluetui-0.8.0-vendor.tar.xz
+Source:         bluetui-0.8.0-vendor.tar.xz
 
 BuildRequires:  cargo-rpm-macros >= 26
 
@@ -33,7 +32,7 @@ TUI for managing bluetooth on Linux.}
 %{_bindir}/bluetui
 
 %prep
-%autosetup -n %{crate}-%{version} -p1 -a1
+%autosetup -n bluetui-%{version} -p1
 %cargo_prep -v vendor
 
 %build
