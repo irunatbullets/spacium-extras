@@ -15,7 +15,7 @@ BuildRequires:  dbus-devel
 Xwayland integration helper for Wayland compositors.
 
 %prep
-%autosetup
+%autosetup -n xwayland-satellite
 
 %build
 cargo build --release
