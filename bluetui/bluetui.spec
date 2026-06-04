@@ -23,15 +23,8 @@ TUI for managing bluetooth on Linux.}
 
 %description %{_description}
 
-%package     -n %{crate}
-Summary:        %{summary}
-# FIXME: paste output of %%cargo_license_summary here
-License:        GPL-3.0
-# LICENSE.dependencies contains a full license breakdown
+%files
 
-%description -n %{crate} %{_description}
-
-%files       -n %{crate}
 %license LICENSE
 %license LICENSE.dependencies
 %license cargo-vendor.txt
