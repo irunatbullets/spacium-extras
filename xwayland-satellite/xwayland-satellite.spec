@@ -11,6 +11,7 @@ BuildRequires:  cargo
 BuildRequires:  rust
 BuildRequires:  clang
 BuildRequires:  dbus-devel
+BuildRequires:  xcb-util-cursor-devel
 
 %description
 Xwayland integration helper for Wayland compositors.
