@@ -1,5 +1,5 @@
 Name:           xwayland-satellite
-Version:        0.0.0
+Version:        0.8.2
 Release:        1%{?dist}
 Summary:        Xwayland integration helper for Wayland compositors
 
