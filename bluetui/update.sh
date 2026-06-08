@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REPO="https://github.com/pythops/bluetui.git"
-VERSION="0.8.0"
+VERSION="0.8.1"
 
 WORKDIR="$(mktemp -d)"
 OUTDIR="$(pwd)"

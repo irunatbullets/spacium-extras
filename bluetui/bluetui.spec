@@ -1,14 +1,14 @@
 %global __brp_mangle_shebangs %{nil}
 
 Name:           bluetui
-Version:        0.8.0
+Version:        0.8.1
 Release:        1%{?dist}
 Summary:        TUI for managing Bluetooth on Linux
 
 License:        GPL-3.0-only
 URL:            https://github.com/pythops/bluetui
 
-Source0:        bluetui-0.8.0.crate
+Source0:        bluetui-0.8.1.crate
 Source1:        vendor.tar.gz
 
 BuildRequires:  cargo
